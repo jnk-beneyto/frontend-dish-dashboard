@@ -9,7 +9,8 @@ const ACTIONS = {
   SET_DATA: 'SET_DATA',
   SET_DATA_FIXED: 'SET_DATA_FIXED',
   SET_DISH: 'SET_DISH',
-  SET_SEARCH: 'SET_SEARCH'
+  SET_SEARCH: 'SET_SEARCH',
+  SET_EDIT_MODE: 'SET_EDIT_MODE',
 }
 
 const initialState = {
@@ -18,8 +19,10 @@ const initialState = {
   fetchData: true,
   dishes: [],
   dishesFixed: [],
-  dish: { name: "", type: "", description: "" },
-  search: ""
+  dish: { id: '', name: "", type: "", description: "" },
+  dishEmpty: { id: '', name: "", type: "", description: "" },
+  search: "",
+  editMode: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,10 +38,13 @@ const reducer = (state = initialState, action) => {
     case ACTIONS.SET_DATA_FIXED:
       return { ...state, dishesFixed: action.value }
     case ACTIONS.SET_DISH:
-      const { id, value } = action
-      return { ...state, dish: { ...state.dish, [id]: value } }
+      return { ...state, dish: action.value }
+    case ACTIONS.RESET_DISH:
+      return { ...state, dish: initialState.dishEmpty }
     case ACTIONS.SET_SEARCH:
       return { ...state, search: action.value }
+    case ACTIONS.SET_EDIT_MODE:
+      return { ...state, editMode: action.value }
     default:
       return state
   }
@@ -65,8 +71,10 @@ export const useDishDispatch = () => {
     setToggleFetch: (value) => dispatch({ type: ACTIONS.SET_FETCH_DATA, value }),
     setDishes: (value) => dispatch({ type: ACTIONS.SET_DATA, value }),
     setDishesFixed: (value) => dispatch({ type: ACTIONS.SET_DATA_FIXED, value }),
-    setDish: (id, value) => dispatch({ type: ACTIONS.SET_DISH, id, value }),
+    setDish: (value) => dispatch({ type: ACTIONS.SET_DISH, value }),
     setSearch: (value) => dispatch({ type: ACTIONS.SET_SEARCH, value }),
+    setEditMode: (value) => dispatch({ type: ACTIONS.SET_EDIT_MODE, value }),
+    resetDish: (value) => dispatch({ type: ACTIONS.RESET_DISH }),
   }
   return { ...actions }
 }

@@ -1,13 +1,24 @@
-import useField from "../hooks/useField"
-import { dishService } from "../services"
-import { useDishDispatch } from "../context/dishContext"
+import { useEffect, useState } from "react"
 import { useToasts } from 'react-toast-notifications'
+import { dishService } from "../services"
+import { useDishDispatch, useDishState } from "../context/dishContext"
 
 export const Dishform = () => {
-  const { setToggleFetch, setError, setErrorMessage, setDishes } = useDishDispatch()
+  const { editMode, dish } = useDishState()
+  const { setToggleFetch, setDish, setEditMode, resetDish } = useDishDispatch()
   const { addToast } = useToasts()
-  const { state, handleChange, resetState } = useField({ name: "", type: "", description: "" })
-  const { name, type, description } = state
+  const { name, type, description } = dish
+
+  useEffect(() => {
+    if (editMode) {
+      setDish(dish)
+    }
+  }, [editMode, dish])
+
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setDish({ ...dish, [id]: value })
+  }
 
   const validate = (dish) => {
     if (
@@ -20,23 +31,44 @@ export const Dishform = () => {
     return true
   }
 
+  const handleCancel = () => {
+    resetDish()
+    setEditMode(false)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const isValid = validate(state)
+    const isValid = validate(dish)
     if (!isValid) {
       setError(true)
       setErrorMessage("Missing some field")
       return
     }
-    dishService.create(state)
-      .then(response => {
-        if (response.status === 200) {
-          addToast("Dish created", { appearance: 'success', autoDismiss: true })
-          resetState()
-          setToggleFetch(true)
-        }
-      })
-      .catch(e => addToast(e.message || 'Some error happened', { appearance: 'error', autoDismiss: true }))
+
+    if (editMode) {
+      dishService.update(dish._id, dish)
+        .then(response => {
+          if (response.status === 200) {
+            addToast("Dish edited", { appearance: 'success', autoDismiss: true })
+            setEditMode(false)
+            resetDish()
+            setToggleFetch(true)
+          }
+        })
+        .catch(e => addToast(e.message || 'Some error happened', { appearance: 'error', autoDismiss: true }))
+
+
+    } else {
+      dishService.create(dish)
+        .then(response => {
+          if (response.status === 200) {
+            addToast("Dish created", { appearance: 'success', autoDismiss: true })
+            resetDish()
+            setToggleFetch(true)
+          }
+        })
+        .catch(e => addToast(e.message || 'Some error happened', { appearance: 'error', autoDismiss: true }))
+    }
   }
 
 
@@ -65,9 +97,14 @@ export const Dishform = () => {
             placeholder=" Add a description"
             onChange={handleChange}
           />
-          <button
-            className='m-2 py-2 uppercase rounded-md bg-gradient-to-r from-indigo-300 to-indigo-600 border-solid border-2 border-indigo-900 hover:text-white'
-            onClick={handleSubmit}>Add dish</button>
+          <div className='flex justify-center'>
+            {editMode && <button
+              className={`m-2 py-2 w-full uppercase rounded-md bg-red-300 border-solid border-2 border-indigo-900 hover:text-white`}
+              onClick={handleCancel}>Cancel</button>}
+            <button
+              className={`m-2 py-2 w-full uppercase rounded-md ${editMode ? 'bg-green-300' : 'bg-gradient-to-r from-indigo-300 to-indigo-600'} border-solid border-2 border-indigo-900 hover:text-white`}
+              onClick={handleSubmit}>{editMode ? 'Edit' : 'Add'} dish</button>
+          </div>
         </form>
       </div>
     </section>
