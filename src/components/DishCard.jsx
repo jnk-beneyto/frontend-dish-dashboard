@@ -1,3 +1,4 @@
+import React from 'react'
 import { useToasts } from 'react-toast-notifications'
 import { ShowIcon } from './ShowIcon'
 import { dishService } from '../services'
