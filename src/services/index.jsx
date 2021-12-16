@@ -1,13 +1,14 @@
 import { fetchWrapper } from '../helpers/fetchWrapper'
 
-const baseUrl = `${import.meta.env.VITE_BASE_URL}/dish`
+// const baseUrl = `${import.meta.env.VITE_BASE_URL}/dish`
+const baseUrl = 'http://localhost:4000/dish'
 
 export const dishService = {
   getAll,
   getById,
   create,
   update,
-  delete: _delete
+  delete: del
 }
 
 function getAll () {
@@ -26,6 +27,6 @@ function update (id, params) {
   return fetchWrapper.put(`${baseUrl}/${id}`, params)
 }
 
-function _delete (id) {
+function del (id) {
   return fetchWrapper.delete(`${baseUrl}/${id}`)
 }
