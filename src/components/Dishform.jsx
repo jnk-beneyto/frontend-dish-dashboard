@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import React from 'react'
+import { useEffect } from 'react'
 import { useToasts } from 'react-toast-notifications'
-import { dishService } from "../services"
-import { useDishDispatch, useDishState } from "../context/dishContext"
+import { dishService } from '../services'
+import { useDishDispatch, useDishState } from '../context/dishContext'
 
 export const Dishform = () => {
   const { editMode, dish } = useDishState()
@@ -40,8 +41,7 @@ export const Dishform = () => {
     e.preventDefault()
     const isValid = validate(dish)
     if (!isValid) {
-      setError(true)
-      setErrorMessage("Missing some field")
+      addToast('Missing some field', { appearance: 'error', autoDismiss: true })
       return
     }
 
@@ -81,7 +81,7 @@ export const Dishform = () => {
             className='pt-2 mx-2 mt-3 border-solid border-b-2 border-black rounded-md'
             type="text"
             value={name}
-            placeholder=" Dish name"
+            placeholder="Dish name"
             onChange={handleChange}
           />
           <select className='m-2 py-2 rounded-md bg-indigo-300  border-solid border-b-2 border-indigo-900' id="type" value={type} onChange={handleChange}>
@@ -94,7 +94,7 @@ export const Dishform = () => {
             id="description"
             className='pt-2 mx-2 mt-2 border-solid border-2 border-black rounded-md'
             value={description}
-            placeholder=" Add a description"
+            placeholder="Add a description"
             onChange={handleChange}
           />
           <div className='flex justify-center'>
