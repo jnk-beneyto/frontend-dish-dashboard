@@ -80,5 +80,6 @@ export const useDishDispatch = () => {
 }
 
 export const useDishState = () => {
-  return useContext(DishContextState)
+  const state = useContext(DishContextState)
+  return { ...state }
 }
