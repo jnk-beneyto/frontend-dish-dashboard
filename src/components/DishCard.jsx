@@ -26,9 +26,9 @@ export const DishCard = ({ dish, index }) => {
   }
 
   return (
-    <section key={index} className='bg-white mx-2 mb-2 border-solid border-2 border-black rounded-md shadow-xl'>
+    <section key={index} className=' bg-white mx-2 mb-2 border-solid border-2 border-black rounded-md shadow-xl'>
       <div className='flex-col'>
-        <header>
+        <header className='h-11'>
           <div className='flex justify-between items-center'>
             <span className='ml-2 py-1 text-bolder uppercase'>{dish.name}</span>
             <span className='mr-2 py-1'>
@@ -36,8 +36,8 @@ export const DishCard = ({ dish, index }) => {
             </span>
           </div>
         </header>
-        <div className='pl-2 h-16 border-solid border-2 border-gray-200 text-gray-400'>{dish.description}</div>
-        <footer>
+        <div className='pl-2 h-20 border-solid border-2 border-gray-200 text-gray-400'>{dish.description}</div>
+        <footer className='max-h-11'>
           <div className='flex justify-between py-1'>
             <button
               className='ml-2 my-1 py-1 px-2 bg-green-600 hover:bg-green-900 hover:text-white rounded-md'

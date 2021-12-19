@@ -34,7 +34,7 @@ export const PieChart = () => {
 
   return (
     <div className='flex justify-center my-4'>
-      <div className=' max-w-xs sm:w-2/5'>
+      <div className=' xs-full sm:w-3/4 md:w-2/5'>
         <h3 className='text-center my-2 uppercase'>Dish Stats</h3>
         <Pie data={data} />
       </div>

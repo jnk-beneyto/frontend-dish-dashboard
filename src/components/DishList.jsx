@@ -17,7 +17,7 @@ export const DishList = () => {
       <>
         {isLoading && <div>Loading...</div>}
         {!isLoading && !error && dishes.length ? (
-          <div className='grid grid-cols-1 sm:grid-cols-2'>
+          <div className='grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2'>
             {dishes.map((dish, index) => {
               return (
                 <DishCard dish={dish} key={index} />
