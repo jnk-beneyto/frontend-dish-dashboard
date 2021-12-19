@@ -26,17 +26,17 @@ export const DishCard = ({ dish, index }) => {
   }
 
   return (
-    <section key={index} className=' mx-2 mb-2 border-solid border-2 border-black rounded-md shadow-xl'>
+    <section key={index} className='bg-white mx-2 mb-2 border-solid border-2 border-black rounded-md shadow-xl'>
       <div className='flex-col'>
         <header>
           <div className='flex justify-between items-center'>
-            <span className='ml-2 py-1 text-bold'>{dish.name}</span>
+            <span className='ml-2 py-1 text-bolder uppercase'>{dish.name}</span>
             <span className='mr-2 py-1'>
               <ShowIcon type={dish.type} />
             </span>
           </div>
         </header>
-        <div className='pl-2 h-16 border-solid border-2 border-gray-200'>{dish.description}</div>
+        <div className='pl-2 h-16 border-solid border-2 border-gray-200 text-gray-400'>{dish.description}</div>
         <footer>
           <div className='flex justify-between py-1'>
             <button

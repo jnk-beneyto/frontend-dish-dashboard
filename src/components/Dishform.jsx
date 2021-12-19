@@ -78,13 +78,13 @@ export const Dishform = () => {
         <form className='flex flex-col border-solid border-2 rounded-md border-black mt-5 shadow-xl'>
           <input
             id="name"
-            className='pt-2 mx-2 mt-3 border-solid border-b-2 border-black rounded-md'
+            className='pt-2 pl-2 mx-2 mt-3 border-solid border-2 border-gray rounded-md'
             type="text"
             value={name}
             placeholder="Dish name"
             onChange={handleChange}
           />
-          <select className='m-2 py-2 rounded-md bg-indigo-300  border-solid border-b-2 border-indigo-900' id="type" value={type} onChange={handleChange}>
+          <select className='m-2 py-2 pl-2 rounded-md bg-blue-300 border-solid border-gray border-blue-900' id="type" value={type} onChange={handleChange}>
             <option className='flex flex-col justify-center items-center' value="">-- type --</option>
             <option value="starter">starter</option>
             <option value="main">main</option>
@@ -92,21 +92,21 @@ export const Dishform = () => {
           </select>
           <textarea
             id="description"
-            className='pt-2 mx-2 mt-2 border-solid border-2 border-black rounded-md'
+            className='pt-2 pl-2 mx-2 border-solid border-2 border-gray rounded-md'
             value={description}
             placeholder="Add a description"
             onChange={handleChange}
           />
           <div className='flex justify-center'>
             {editMode && <button
-              className={`m-2 py-2 w-full uppercase rounded-md bg-red-300 border-solid border-2 border-indigo-900 hover:text-white`}
+              className={`m-2 py-2 w-full uppercase rounded-md bg-red-300 border-solid border-2 border-blue-900 hover:text-white`}
               onClick={handleCancel}>Cancel</button>}
             <button
-              className={`m-2 py-2 w-full uppercase rounded-md ${editMode ? 'bg-green-300' : 'bg-gradient-to-r from-indigo-300 to-indigo-600'} border-solid border-2 border-indigo-900 hover:text-white`}
+              className={`m-2 py-2 w-full uppercase rounded-md ${editMode ? 'bg-green-300' : 'bg-gradient-to-r from-blue-300 to-blue-600'} border-solid border-2 border-blue-900 hover:text-white`}
               onClick={handleSubmit}>{editMode ? 'Edit' : 'Add'} dish</button>
           </div>
         </form>
       </div>
-    </section>
+    </section >
   )
 }
