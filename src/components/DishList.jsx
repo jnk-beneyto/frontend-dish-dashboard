@@ -1,6 +1,7 @@
 import React from 'react'
 import { DishCard } from './DishCard'
 import { useFetch } from '../hooks/useFetch'
+import { Spinner } from './Spinner'
 
 export const DishList = () => {
   const { error, isLoading, dishes } = useFetch()
@@ -13,10 +14,10 @@ export const DishList = () => {
       </div>
     )
   } else {
+    if (isLoading) return <Spinner />
     return (
       <>
-        {isLoading && <div>Loading...</div>}
-        {!isLoading && !error && dishes.length ? (
+        {dishes.length ? (
           <div className='grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2'>
             {dishes.map((dish, index) => {
               return (
