@@ -21,6 +21,6 @@ jobs:
       - uses: actions/setup-node@v2
       - name: build and test
         run: |
-          npm ci
-          npm run build
-          npm run test
+          yarn install --immutable --immutable-cache
+          yarn run build
+          yarn run test
