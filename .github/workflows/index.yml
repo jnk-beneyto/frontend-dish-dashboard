@@ -1,4 +1,4 @@
-name: Test
+name: Test_and_build
 
 # Controls when the action will run.
 on:
@@ -19,7 +19,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: test
+      - name: test_build
         run: |
           yarn install --immutable --immutable-cache
           yarn run test
+          yarn build
