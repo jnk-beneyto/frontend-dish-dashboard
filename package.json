@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "npm run watch:css && vite",
-    "build": "npm run watch:css && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "test": "jest -env=jsdom",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
