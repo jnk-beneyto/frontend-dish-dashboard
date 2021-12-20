@@ -1,4 +1,4 @@
-import { Dishform } from "./components/DishForm"
+import { Dishform } from "./components/Dishform"
 import { DishList } from "./components/DishList"
 import { PieChart } from "./components/PieChart"
 import { useDishState, useDishDispatch } from "./context/dishContext"
