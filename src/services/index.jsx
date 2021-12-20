@@ -1,7 +1,7 @@
 import { fetchWrapper } from '../helpers/fetchWrapper'
 
-// const baseUrl = `${import.meta.env.VITE_BASE_URL}/dish`
-const baseUrl = 'http://localhost:4000/dish'
+// const baseUrl = 'http://localhost:4000/dish'
+const baseUrl = 'https://frozen-wildwood-78660.herokuapp.com/dish'
 
 export const dishService = {
   getAll,
